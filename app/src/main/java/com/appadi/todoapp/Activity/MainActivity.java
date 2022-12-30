@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appadi.todoapp.API.APIRequestData;
@@ -34,15 +35,17 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout srlData;
     private ProgressBar pbData;
     private FloatingActionButton fabTambah;
+    private TextView tvEmpty;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         rvData = findViewById(R.id.rv_data);
         srlData = findViewById(R.id.srl_data);
         pbData = findViewById(R.id.pb_data);
         fabTambah = findViewById(R.id.fab_tambah);
+        tvEmpty = findViewById(R.id.empty_view);
         lmData = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
         retrieveData();
@@ -86,10 +89,14 @@ public class MainActivity extends AppCompatActivity {
 
                 listData = response.body().getData();
 
-                adData = new AdapterData(MainActivity.this, listData);
-                rvData.setAdapter(adData);
-                adData.notifyDataSetChanged();
-
+                if(listData != null){
+                    adData = new AdapterData(MainActivity.this, listData);
+                    rvData.setAdapter(adData);
+                    adData.notifyDataSetChanged();
+                }else{
+                    rvData.setVisibility(View.GONE);
+                    tvEmpty.setVisibility(View.VISIBLE);
+                }
                 pbData.setVisibility(View.INVISIBLE);
             }
 
