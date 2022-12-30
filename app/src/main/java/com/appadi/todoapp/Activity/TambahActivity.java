@@ -45,7 +45,7 @@ public class TambahActivity extends AppCompatActivity {
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         final int hour = calendar.get(Calendar.HOUR);
         final int minute = calendar.get(Calendar.MINUTE);
 
@@ -70,10 +70,10 @@ public class TambahActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                         month = month+1;
-                        String date = year+"/"+month+"/"+day;
+                        String date = year+"/"+month+"/"+dayOfMonth;
                         etTanggal.setText(date);
                     }
-                },year,month,day);
+                },year,month,dayOfMonth);
                 dialog.show();
             }
         });
