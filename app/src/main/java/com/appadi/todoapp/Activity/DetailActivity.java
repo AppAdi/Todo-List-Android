@@ -23,8 +23,8 @@ import retrofit2.Response;
 public class DetailActivity extends AppCompatActivity {
     int xId;
     private String xNama, xDeskripsi, xTanggal, xWaktu, xStatus;
-    private TextView etNama, etDeskripsi, etTanggal, etWaktu, etStatus;
-    Button btnTask, btnDelete;
+    private TextView etNama, etDeskripsi, etTanggal, etWaktu;
+    Button btnTask, btnDelete, btnKembali;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +42,22 @@ public class DetailActivity extends AppCompatActivity {
         etDeskripsi = findViewById(R.id.tv_deskripsi);
         etTanggal = findViewById(R.id.tv_tanggal);
         etWaktu = findViewById(R.id.tv_waktu);
-        etStatus = findViewById(R.id.tv_status);
         btnTask = findViewById(R.id.btn_task);
         btnDelete = findViewById(R.id.btn_delete);
+        btnKembali = findViewById(R.id.btn_kembali);
 
         etNama.setText(xNama);
         etDeskripsi.setText(xDeskripsi);
         etTanggal.setText(xTanggal);
         etWaktu.setText(xWaktu);
-        etStatus.setText(xStatus);
+
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent kembali = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(kembali);
+            }
+        });
 
         btnTask.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,52 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activity.DetailActivity">
 
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_nama"
-        android:text="Nama Tugas"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_deskripsi"
-        android:text="Nama Deskripsi"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@color/purple_500"
+            android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_tanggal"
-        android:text="Nama Tanggal"/>
+            <Button
+                android:id="@+id/btn_kembali"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:text="X"
+                android:textSize="30dp"
+                android:layout_marginRight="10dp"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_waktu"
-        android:text="Nama Waktu"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:textColor="@color/purple_700"
+            android:id="@+id/tv_nama"
+            android:text="Nama Tugas"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_status"
-        android:text="Nama Status"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:textSize="15dp"
+            android:id="@+id/tv_deskripsi"
+            android:text="Nama Deskripsi"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_date_range_24"
+                android:backgroundTint="@color/purple_200"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/tv_tanggal"
+                android:text="Nama Tanggal"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_access_time_24"
+                android:backgroundTint="@color/purple_200"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/tv_waktu"
+                android:text="Nama Waktu"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Task"
-        android:id="@+id/btn_delete"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
         android:text="Edit Task"
-        android:id="@+id/btn_task"/>
+        android:id="@+id/btn_task"
+        android:textSize="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/btn_delete"/>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="15dp"
+        android:backgroundTint="@color/delete"
+        android:text="Delete Task"
+        android:textColor="#FF4790"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

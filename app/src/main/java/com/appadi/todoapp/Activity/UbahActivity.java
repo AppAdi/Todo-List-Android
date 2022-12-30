@@ -30,7 +30,7 @@ public class UbahActivity extends AppCompatActivity {
     private String xNama, xDeskripsi, xTanggal, xWaktu, xStatus;
     private String yNama, yDeskripsi, yTanggal, yWaktu, yStatus;
     private EditText etNama, etDeskripsi, etTanggal, etWaktu;
-    private Button btnUbah;
+    private Button btnUbah, btnKembali;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,7 @@ public class UbahActivity extends AppCompatActivity {
         etTanggal = findViewById(R.id.et_tanggal);
         etWaktu = findViewById(R.id.et_waktu);
         btnUbah = findViewById(R.id.btn_ubah);
+        btnKembali = findViewById(R.id.btn_kembali);
 
         etNama.setText(xNama);
         etDeskripsi.setText(xDeskripsi);
@@ -61,6 +62,14 @@ public class UbahActivity extends AppCompatActivity {
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
         final int hour = calendar.get(Calendar.HOUR);
         final int minute = calendar.get(Calendar.MINUTE);
+
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent kembali = new Intent(UbahActivity.this, MainActivity.class);
+                startActivity(kembali);
+            }
+        });
 
         etWaktu.setOnClickListener(new View.OnClickListener() {
             @Override

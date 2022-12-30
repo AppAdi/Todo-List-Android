@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardlist_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    android:id="@+id/cardlist_item">
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
+    app:cardBackgroundColor="@color/purple_700"
+    app:cardCornerRadius="10dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="6dp">
-
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_selesai"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginRight="10dp"-->
-        <!--            android:text="Selesai"-->
-        <!--            />-->
+        android:padding="10dp">
 
         <RadioButton
             android:id="@+id/btn_selesai"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/white" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginRight="10dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/purple_200"
                 android:visibility="gone" />
 
             <TextView
@@ -49,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Tugas"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -58,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="Deskripsi Tugas Adalah Demikian"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -69,23 +67,25 @@
                     android:id="@+id/tv_tanggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="start"
                     android:text="2022-24-12"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:gravity="start"/>
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/tv_waktu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="23:00:00"
-                    android:textSize="16sp"
                     android:layout_weight="2"
-                    android:gravity="end"/>
+                    android:gravity="end"
+                    android:text="23:00:00"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

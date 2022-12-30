@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class TambahActivity extends AppCompatActivity {
 
     private EditText etNama, etDeskripsi, etTanggal, etWaktu;
-    private Button btnSimpan;
+    private Button btnSimpan, btnKembali;
     private String nama, deskripsi, tanggal, waktu;
 
     @Override
@@ -40,6 +40,7 @@ public class TambahActivity extends AppCompatActivity {
         etTanggal = findViewById(R.id.et_tanggal);
         etWaktu = findViewById(R.id.et_waktu);
         btnSimpan = findViewById(R.id.btn_simpan);
+        btnKembali = findViewById(R.id.btn_kembali);
 
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -100,6 +101,15 @@ public class TambahActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent kembali = new Intent(TambahActivity.this, MainActivity.class);
+                startActivity(kembali);
+            }
+        });
+
     }
 
     private void createData(){

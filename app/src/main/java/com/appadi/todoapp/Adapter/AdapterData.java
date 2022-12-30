@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,9 @@ import com.appadi.todoapp.Model.DataModel;
 import com.appadi.todoapp.Model.ResponseModel;
 import com.appadi.todoapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,7 +56,7 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterData.HolderData holder, int position) {
+    public void onBindViewHolder(@NonNull HolderData holder, int position) {
         DataModel dm = listData.get(position);
 
         holder.tvId.setText(String.valueOf(dm.getId()));
@@ -62,6 +65,24 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
         holder.tvTanggal.setText(dm.getTanggal());
         holder.tvWaktu.setText(dm.getWaktu());
         holder.tvStatus.setText(dm.getStatus());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            holder.carditem.setCardBackgroundColor(holder.itemView.getResources().getColor(GetRandomColor(),null));
+        }
+
+    }
+
+    private int GetRandomColor() {
+        List<Integer> colorCode = new ArrayList<>();
+        colorCode.add(R.color.biru);
+        colorCode.add(R.color.merah);
+        colorCode.add(R.color.kuning);
+        colorCode.add(R.color.ungu);
+        colorCode.add(R.color.orange);
+
+        Random random = new Random();
+        int number = random.nextInt(colorCode.size());
+        return colorCode.get(number);
     }
 
     @Override
