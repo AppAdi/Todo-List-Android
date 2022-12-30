@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appadi.todoapp.API.APIRequestData;
 import com.appadi.todoapp.API.RetroServer;
+import com.appadi.todoapp.Activity.DetailActivity;
 import com.appadi.todoapp.Activity.MainActivity;
 import com.appadi.todoapp.Activity.UbahActivity;
 import com.appadi.todoapp.Model.DataModel;
@@ -67,14 +69,15 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
         return listData.size();
     }
 
-    public class HolderData extends RecyclerView.ViewHolder{
-        TextView tvId, tvNama, tvDeskripsi, tvTanggal, tvWaktu, tvStatus, btnSelesai;
+    public class HolderData extends RecyclerView.ViewHolder {
+        TextView tvId, tvNama, tvDeskripsi, tvTanggal, tvWaktu, tvStatus;
+        RadioButton btnSelesai;
         CardView carditem;
 
-        public HolderData(@NonNull View itemView){
+        public HolderData(@NonNull View itemView) {
             super(itemView);
 
-            tvId= itemView.findViewById(R.id.tv_id);
+            tvId = itemView.findViewById(R.id.tv_id);
             tvNama = itemView.findViewById(R.id.tv_nama);
             tvDeskripsi = itemView.findViewById(R.id.tv_deskripsi);
             tvTanggal = itemView.findViewById(R.id.tv_tanggal);
@@ -84,7 +87,7 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
             carditem = itemView.findViewById(R.id.cardlist_item);
 
             statusTodo = (tvStatus.getText().toString());
-            if (statusTodo.equals("Selesai")){
+            if (statusTodo.equals("Selesai")) {
                 Toast.makeText(ctx, "Ada Yang Selesai", Toast.LENGTH_LONG).show();
                 carditem.setCardBackgroundColor(Color.LTGRAY);
             }
@@ -94,6 +97,15 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
                 public void onClick(View view) {
                     idTodo = Integer.parseInt(tvId.getText().toString());
                     completeTask();
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    idTodo = Integer.parseInt(tvId.getText().toString());
+
+                    getData();
                 }
             });
 
@@ -115,7 +127,7 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
                             hand.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ((MainActivity)ctx).retrieveData();
+                                    ((MainActivity) ctx).retrieveData();
                                 }
                             }, 1000);
                         }
@@ -135,7 +147,7 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
             });
         }
 
-        private void deleteData(){
+        private void deleteData() {
             APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
             Call<ResponseModel> hapusData = ardData.ardDeleteData(idTodo);
 
@@ -145,17 +157,17 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
                     int kode = response.body().getKode();
                     String pesan = response.body().getPesan();
 
-                    Toast.makeText(ctx, "Kode :"+kode+ "| Pesan : "+pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, "Kode :" + kode + "| Pesan : " + pesan, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onFailure(Call<ResponseModel> call, Throwable t) {
-                    Toast.makeText(ctx, "Gagal : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, "Gagal : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
-        private void completeTask(){
+        private void completeTask() {
             APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
             Call<ResponseModel> completetask = ardData.ardCompleteData(idTodo);
 
@@ -165,17 +177,19 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
                     int kode = response.body().getKode();
                     String pesan = response.body().getPesan();
 
-                    Toast.makeText(ctx, "Kode :"+kode+ "| Pesan : "+pesan, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ctx, "Kode :" + kode + "| Pesan : " + pesan, Toast.LENGTH_SHORT).show();
+                    Intent tes = new Intent(ctx, MainActivity.class);
+                    ctx.startActivity(tes);
                 }
 
                 @Override
                 public void onFailure(Call<ResponseModel> call, Throwable t) {
-                    Toast.makeText(ctx, "Gagal : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, "Gagal : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
-        private void getData(){
+        private void getData() {
             APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
             Call<ResponseModel> ambilData = ardData.ardGetData(idTodo);
 
@@ -196,19 +210,19 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
 //                    Toast.makeText(ctx, "Kode :"+kode+ "| Pesan : "+pesan+ " | "+varidTodo+
 //                            " | "+varNamaLaundry+" | "+varAlamatLaundry+" | "+varTeleponLaundry, Toast.LENGTH_SHORT).show();
 
-                    Intent kirim = new Intent(ctx, UbahActivity.class);
-                    kirim.putExtra("xId",varidTodo);
-                    kirim.putExtra("xNama",varNama);
-                    kirim.putExtra("xDeskripsi",varDeskripsi);
-                    kirim.putExtra("xTanggal",varTanggal);
-                    kirim.putExtra("xWaktu",varWaktu);
-                    kirim.putExtra("xStatus",varStatus);
+                    Intent kirim = new Intent(ctx, DetailActivity.class);
+                    kirim.putExtra("xId", varidTodo);
+                    kirim.putExtra("xNama", varNama);
+                    kirim.putExtra("xDeskripsi", varDeskripsi);
+                    kirim.putExtra("xTanggal", varTanggal);
+                    kirim.putExtra("xWaktu", varWaktu);
+                    kirim.putExtra("xStatus", varStatus);
                     ctx.startActivity(kirim);
                 }
 
                 @Override
                 public void onFailure(Call<ResponseModel> call, Throwable t) {
-                    Toast.makeText(ctx, "Gagal : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, "Gagal : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

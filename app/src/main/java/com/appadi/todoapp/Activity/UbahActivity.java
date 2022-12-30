@@ -98,12 +98,14 @@ public class UbahActivity extends AppCompatActivity {
                 yDeskripsi = etDeskripsi.getText().toString();
                 yTanggal = etTanggal.getText().toString();
                 yWaktu = etWaktu.getText().toString();
-                if (xStatus == "Aktif"){
-                    yStatus = "Selesai";
-                }else{
-                    yStatus = "Aktif";
-                }
+//                if (xStatus == "Aktif"){
+//                    yStatus = "Selesai";
+//                }else{
+//                    yStatus = "Aktif";
+//                }
                 updateData();
+                Intent intent = new Intent(UbahActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -115,10 +117,10 @@ public class UbahActivity extends AppCompatActivity {
         ubahData.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                int kode = response.body().getKode();
-                String pesan = response.body().getPesan();
+//                int kode = response.body().getKode();
+//                String pesan = response.body().getPesan();
 
-                Toast.makeText(UbahActivity.this, "Kode :"+kode+ "| Pesan : "+pesan, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(UbahActivity.this, "Kode :"+kode+ "| Pesan : "+pesan, Toast.LENGTH_SHORT).show();
                 finish();
             }
 

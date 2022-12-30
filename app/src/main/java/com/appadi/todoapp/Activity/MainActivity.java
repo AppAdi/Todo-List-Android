@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
         rvData = findViewById(R.id.rv_data);
         srlData = findViewById(R.id.srl_data);
         pbData = findViewById(R.id.pb_data);

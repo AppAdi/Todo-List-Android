@@ -40,7 +40,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ubah Status"
-        android:id="@+id/btn_status"/>
+        android:text="Delete Task"
+        android:id="@+id/btn_delete"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Task"
+        android:id="@+id/btn_task"/>
 
 </LinearLayout>
