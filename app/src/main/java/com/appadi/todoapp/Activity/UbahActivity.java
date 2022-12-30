@@ -92,8 +92,8 @@ public class UbahActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                         month = month+1;
-                        String date = year+"/"+month+"/"+day;
-                        etTanggal.setText(date);
+                        String date1 = year+"/"+month+"/"+day;
+                        etTanggal.setText(date1);
                     }
                 },year,month,day);
                 dialog.show();
@@ -107,11 +107,7 @@ public class UbahActivity extends AppCompatActivity {
                 yDeskripsi = etDeskripsi.getText().toString();
                 yTanggal = etTanggal.getText().toString();
                 yWaktu = etWaktu.getText().toString();
-//                if (xStatus == "Aktif"){
-//                    yStatus = "Selesai";
-//                }else{
-//                    yStatus = "Aktif";
-//                }
+
                 updateData();
                 Intent intent = new Intent(UbahActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -126,10 +122,6 @@ public class UbahActivity extends AppCompatActivity {
         ubahData.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-//                int kode = response.body().getKode();
-//                String pesan = response.body().getPesan();
-
-//                Toast.makeText(UbahActivity.this, "Kode :"+kode+ "| Pesan : "+pesan, Toast.LENGTH_SHORT).show();
                 finish();
             }
 

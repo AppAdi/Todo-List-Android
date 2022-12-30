@@ -82,11 +82,6 @@ public class MainActivity extends AppCompatActivity {
         tampilData.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                int kode = response.body().getKode();
-                String pesan = response.body().getPesan();
-
-//                Toast.makeText(MainActivity.this, "Kode :"+kode+" | Pesan : "+pesan, Toast.LENGTH_SHORT).show();
-
                 listData = response.body().getData();
 
                 if(listData != null){

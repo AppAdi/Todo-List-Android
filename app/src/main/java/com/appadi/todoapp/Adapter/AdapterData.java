@@ -175,10 +175,6 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
             hapusData.enqueue(new Callback<ResponseModel>() {
                 @Override
                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                    int kode = response.body().getKode();
-                    String pesan = response.body().getPesan();
-
-                    Toast.makeText(ctx, "Kode :" + kode + "| Pesan : " + pesan, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -195,10 +191,6 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
             completetask.enqueue(new Callback<ResponseModel>() {
                 @Override
                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                    int kode = response.body().getKode();
-                    String pesan = response.body().getPesan();
-
-//                    Toast.makeText(ctx, "Kode :" + kode + "| Pesan : " + pesan, Toast.LENGTH_SHORT).show();
                     Intent tes = new Intent(ctx, MainActivity.class);
                     ctx.startActivity(tes);
                 }
@@ -217,8 +209,6 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
             ambilData.enqueue(new Callback<ResponseModel>() {
                 @Override
                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                    int kode = response.body().getKode();
-                    String pesan = response.body().getPesan();
                     listTodo = response.body().getData();
 
                     int varidTodo = listTodo.get(0).getId();
@@ -227,9 +217,6 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.HolderData>{
                     String varTanggal = listTodo.get(0).getTanggal();
                     String varWaktu = listTodo.get(0).getWaktu();
                     String varStatus = listTodo.get(0).getStatus();
-
-//                    Toast.makeText(ctx, "Kode :"+kode+ "| Pesan : "+pesan+ " | "+varidTodo+
-//                            " | "+varNamaLaundry+" | "+varAlamatLaundry+" | "+varTeleponLaundry, Toast.LENGTH_SHORT).show();
 
                     Intent kirim = new Intent(ctx, DetailActivity.class);
                     kirim.putExtra("xId", varidTodo);
